@@ -1,4 +1,4 @@
-package com.example.SpringTodoApplication.model;
+package com.example.SpringTodoApplication;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
@@ -15,16 +15,19 @@ public class Todo {
 	private String title;
 	private String description;
 	private Boolean completed;
-	private Date date;
+	private Date createddate;
+	private Date deadline;
+
 
 	public Todo(){}
 
-	public Todo(ObjectId _id,String title,String description,Boolean completed, Date date){
+	public Todo(ObjectId _id,String title,String description,Boolean completed, Date createddate,Date deadline ){
      this._id =_id;
      this.title =title;
      this.description =description;
      this.completed =completed;
-     this.date =date;
+     this.createddate =createddate;
+
 	}
 
 	public ObjectId get_id() {
@@ -47,33 +50,29 @@ public class Todo {
 		return description;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	public void setDescription(String description) {this.description = description; }
 
-	public Boolean getStatus() {
-		return completed;
-	}
+	public Boolean getCompleted() {return completed; }
 
-	public void setStatus(Boolean status) {
-		this.completed = completed;
-	}
+	public void setCompleted(Boolean completed) { this.completed = completed; }
 
-	public Date getDate() {
-		return date;
-	}
+	public Date getCreateddate() { return createddate; }
 
-	public void setDate(Date date) {
-		this.date = date;
-	}
+	public void setCreateddate(Date createddate) { this.createddate = createddate; }
+
+	public Date getDeadline() { return deadline; }
+
+	public void setDeadline(Date deadline) { this.deadline = deadline; }
 
 	@Override
 	public String toString() {
 		return "Todo{" +
-				"title='" + title + '\'' +
+				"_id=" + _id +
+				", title='" + title + '\'' +
 				", description='" + description + '\'' +
 				", completed=" + completed +
-				", date=" + date +
+				", createddate=" + createddate +
+				", deadline=" + deadline +
 				'}';
 	}
 }

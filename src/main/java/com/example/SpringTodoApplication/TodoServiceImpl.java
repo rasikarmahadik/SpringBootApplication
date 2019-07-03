@@ -1,30 +1,26 @@
-package com.example.SpringTodoApplication.service;
+package com.example.SpringTodoApplication;
 
-import com.example.SpringTodoApplication.dao.Tododao;
-import com.example.SpringTodoApplication.model.Todo;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
-import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Service
 public class TodoServiceImpl implements TodoService {
 
 	@Autowired
-	Tododao dao;
+	TododaoRepository dao;
 
 	@Override
-	public void createTodoList(List<Todo> todos){
-		dao.saveAll(todos);
+	public void createTodoList(Todo todos){
+		todos.setCreateddate(new Date());
+		dao.save(todos);
 	}
 
 	@Override
-	public Collection<Todo> getAllTodoList() {
+	public List<Todo> getAllTodoList() {
 		return dao.findAll();
 	}
 
@@ -38,8 +34,5 @@ public class TodoServiceImpl implements TodoService {
 		dao.deleteById(id.toString());
 	}
 
-	@Override
-	public void getTodaysList(){
 
-	}
 }
