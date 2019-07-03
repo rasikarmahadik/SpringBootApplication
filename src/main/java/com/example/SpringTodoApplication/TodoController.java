@@ -50,6 +50,18 @@ public class TodoController {
 		return "TodoList with list-id= " + id + " deleted.";
 	}
 
+	@RequestMapping(value="/getCompletedTodolist", method = RequestMethod.GET)
+	public List<Todo> getCompletedList() {
+		logger.debug("Getting all The Completed ToDoList.");
+		return service.getCompletedList();
+	}
+
+	@RequestMapping(value="/getInCompletedTodolist", method = RequestMethod.GET)
+	public List<Todo> getInCompletedList() {
+		logger.debug("Getting all The Incomplete ToDoList.");
+		return service.getInCompletedList();
+	}
+
 
 
 }

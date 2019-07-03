@@ -16,5 +16,7 @@ public interface TodoService {
 
 	public void deleteToList(ObjectId id );
 
+	public List<Todo> getCompletedList();
 
+	public List<Todo> getInCompletedList();
 }
