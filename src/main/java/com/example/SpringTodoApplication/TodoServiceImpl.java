@@ -3,6 +3,7 @@ package com.example.SpringTodoApplication;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
@@ -58,8 +59,9 @@ public class TodoServiceImpl implements TodoService {
 	@Override
 	public List<Todo> getTodaysToDoList() {
 		Calendar calender = Calendar.getInstance();
-		//calender.add(Calendar.DAY_OF_MONTH, -1);
-		query.addCriteria(Criteria.where("createddate").gt(calender.getTime()));
+		calender.add(Calendar.DAY_OF_MONTH, -1);
+		Aggregation.match(Criteria.where("createddate").lte(calender.getTime()).and("deadline").gte(calender.getTime()));
+		//query.addCriteria(Criteria.where("createddate").lte(calender.getTime()).and("deadline").gte(calender.getTime()));
 		return mongoTemplate.find(query,Todo.class);
 	}
 

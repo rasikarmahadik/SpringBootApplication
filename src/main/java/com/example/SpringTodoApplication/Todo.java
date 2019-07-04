@@ -27,7 +27,7 @@ public class Todo {
      this.description =description;
      this.completed =completed;
      this.createddate =createddate;
-
+     this.deadline =deadline;
 	}
 
 	public ObjectId get_id() {
