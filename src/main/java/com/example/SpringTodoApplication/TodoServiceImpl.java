@@ -7,6 +7,8 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -53,5 +55,20 @@ public class TodoServiceImpl implements TodoService {
 		return  mongoTemplate.find(query,Todo.class);
 	}
 
+	@Override
+	public List<Todo> getTodaysToDoList() {
+		Calendar calender = Calendar.getInstance();
+		//calender.add(Calendar.DAY_OF_MONTH, -1);
+		query.addCriteria(Criteria.where("createddate").gt(calender.getTime()));
+		return mongoTemplate.find(query,Todo.class);
+	}
+
+	@Override
+	public List<Todo> getTomorrowToDoList() {
+		Calendar calender = Calendar.getInstance();
+		calender.add(Calendar.DAY_OF_MONTH,-1);
+		query.addCriteria(Criteria.where("deadline").gt(calender.getTime()));
+		return mongoTemplate.find(query,Todo.class);
+	}
 
 }

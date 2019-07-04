@@ -62,6 +62,19 @@ public class TodoController {
 		return service.getInCompletedList();
 	}
 
+	@RequestMapping(value="/getTodaysTodolist", method = RequestMethod.GET)
+	public List<Todo> getTodaysList() {
+		logger.debug("Getting all todays ToDoList.");
+		return service.getTodaysToDoList();
+	}
+
+
+	@RequestMapping(value="/getTomorrowTodolist", method = RequestMethod.GET)
+	public List<Todo> getTomorrowToDoList() {
+		logger.debug("Getting all tomorrow's ToDoList.");
+		return service.getTomorrowToDoList();
+	}
+
 
 
 }

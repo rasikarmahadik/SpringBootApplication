@@ -19,4 +19,9 @@ public interface TodoService {
 	public List<Todo> getCompletedList();
 
 	public List<Todo> getInCompletedList();
+
+	public List<Todo> getTodaysToDoList();
+
+	public List<Todo> getTomorrowToDoList();
+
 }
